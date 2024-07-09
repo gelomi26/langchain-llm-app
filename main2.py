@@ -23,4 +23,5 @@ if query and youtube_url:
     response, docs = lch2.get_response_from_query(db, query)
     st.subheader("Answer:")
     st.text(textwrap.fill(response, width= 80))
-    
+
+# 가나다
