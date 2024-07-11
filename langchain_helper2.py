@@ -34,8 +34,7 @@ def get_response_from_query(db, query, k=4):
     docs = db.similarity_search(query, k=k)
     docs_page_content = " ".join([d.page_content for d in docs])
 
-    llm = OpenAI(model="gpt-3.5-turbo")
-
+    llm = OpenAI(model="gpt-3.5-turbo-instruct")
     prompt = PromptTemplate.from_template(
         # input_variables = ["question", "docs"],
         template = """
@@ -55,4 +54,4 @@ def get_response_from_query(db, query, k=4):
 
     response = chain.run(question = query, docs = docs_page_content)
     response = response.replace("\n", "")
-    return response
+    return response, docs
